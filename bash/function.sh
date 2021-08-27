@@ -1,25 +1,21 @@
 #!/bin/bash
 
+###############################################################
+
 function addition(){
-	x=$1
-	y=$2
-	result=$(echo $(($x+$y)))
+	result=$(echo $(($1+$2)))
 }
 
 function subtraction(){
-	x=$1
-	y=$2
-	result=$(echo $(($x-$y)))
+	result=$(echo $(($1-$2)))
 }
 
 function multiplication(){
-	x=$1
-	y=$2
-	result=$(echo $(($x*$y)))
+	result=$(echo $(($1*$2)))
 }
 
 function division(){
-	x=$1
-	y=$2
-	result=$(echo $(($x/$y)))
+	result=$(echo $(($1/$2)))
 }
+
+###############################################################

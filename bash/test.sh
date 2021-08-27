@@ -2,50 +2,86 @@
 
 source function.sh
 
+###############################################################
+
 function assert(){
-	x=$1
-	y=$2
-	if [ $x == $y ]; then
-		echo -e "\e[1;32mOK\033[0m"
+	if [ $1 == $2 ]; then
+		echo -e "\e[1;32mOK - ${3}\033[0m"
 	else
-		echo -e "\e[1;31mERROR\033[0m"
+		echo -e "\e[1;31mERROR - ${3}\033[0m"
 	fi
 }
 
-addition 0 0
-assert $result 0
+###############################################################
 
-addition 0 1
-assert $result 1
+x=0
+y=0
+expected_result=0
+addition ${x} ${y}
+assert $result $expected_result "${x}+${y}=${expected_result}"
 
-addition 10 10
-assert $result 20
+x=1
+y=1
+expected_result=2
+addition ${x} ${y}
+assert $result $expected_result "${x}+${y}=${expected_result}"
 
-subtraction 3 1
-assert $result 0
+x=10
+y=10
+expected_result=20
+addition ${x} ${y}
+assert $result $expected_result "${x}+${y}=${expected_result}"
 
-subtraction 30 1
-assert $result 29
+x=3
+y=1
+expected_result=2
+subtraction ${x} ${y}
+assert $result $expected_result "${x}-${y}=${expected_result}"
 
-subtraction 0 1
-assert $result -1
+x=30
+y=1
+expected_result=29
+subtraction ${x} ${y}
+assert $result $expected_result "${x}-${y}=${expected_result}"
 
-multiplication 2 2
-assert $result 4
+x=0
+y=1
+expected_result=-1
+subtraction ${x} ${y}
+assert $result $expected_result "${x}-${y}=${expected_result}"
 
-multiplication 100 100
-assert $result 10000
+x=2
+y=2
+expected_result=4
+multiplication ${x} ${y}
+assert $result $expected_result "${x}*${y}=${expected_result}"
 
-multiplication 20 1
-assert $result 20
+x=100
+y=100
+expected_result=10000
+multiplication ${x} ${y}
+assert $result $expected_result "${x}*${y}=${expected_result}"
 
-division 10 0
-assert $? 1
+x=20
+y=2
+expected_result=40
+multiplication ${x} ${y}
+assert $result $expected_result "${x}*${y}=${expected_result}"
 
-division 10 1
-assert $result 10
+x=10
+y=0
+expected_result=1
+division ${x} ${y}
+assert $? $expected_result "Division by 0 should fail with exit code 1"
 
-division 4 2
-assert $result 2
+x=10
+y=1
+expected_result=10
+division ${x} ${y}
+assert $result $expected_result "${x}/${y}=${expected_result}"
 
-
+x=4
+y=2
+expected_result=2
+division ${x} ${y}
+assert $result $expected_result "${x}/${y}=${expected_result}"
