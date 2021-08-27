@@ -5,14 +5,17 @@ source function.sh
 ###############################################################
 
 function assert(){
-	if [ $1 == $2 ]; then
+	if [ ${1} == ${2} ]; then
 		echo -e "\e[1;32mOK - ${3}\033[0m"
 	else
 		echo -e "\e[1;31mERROR - ${3}\033[0m"
+		failed_test_count=$(echo $((${failed_test_count}+1)))
 	fi
 }
 
 ###############################################################
+
+failed_test_count=0
 
 x=0
 y=0
@@ -71,7 +74,7 @@ assert ${result} $expected_result "${x}*${y}=${expected_result}, result was ${re
 x=10
 y=0
 expected_result=1
-division ${x} ${y}
+division ${x} ${y}  2> /dev/null
 assert $? $expected_result "Division by 0 should fail with exit code 1. Exit code was $?"
 
 x=10
@@ -85,3 +88,12 @@ y=2
 expected_result=2
 division ${x} ${y}
 assert ${result} $expected_result "${x}/${y}=${expected_result}, result was ${result}"
+
+echo "------------------------"
+if [ ${failed_test_count} == 0 ]; then
+	echo -e "\e[1;32mAll test were successful${3}\033[0m"
+else
+	echo -e "\e[1;31mTotal failed tests - ${failed_test_count}\033[0m"
+fi
+
+exit ${failed_test_count}

@@ -6,14 +6,22 @@ source function.sh
 
 ###############################################################
 
-addition 0 1
-echo $result
+x=0
+y=1
+addition ${x} ${y}
+echo "${x}+${y}=${result}"
 
-subtraction 3 1
-echo $result
+x=3
+y=1
+subtraction ${x} ${y}
+echo "${x}-${y}=${result}"
 
-multiplication 2 2
-echo $result
+x=4
+y=5
+multiplication ${x} ${y}
+echo "${x}*${y}=${result}"
 
-division 10 0
-echo $result
+x=10
+y=2
+division ${x} ${y}
+echo "${x}/${y}=${result}"
