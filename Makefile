@@ -4,3 +4,7 @@ bash_test:
 	
 bash_calculator:
 	cd bash && ./calculator.sh
+	
+python3_test:
+	podman build -f python3/Containerfile -t unit_test_python3 python3/
+	podman run localhost/unit_test_python3	
