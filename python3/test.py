@@ -46,9 +46,9 @@ expected_result=0
 result=subtraction(x,y)
 test(result,expected_result,str(x) + "-" + str(y) + "=" + str(expected_result) + ", result was " + str(result))
 
-x=0
-y=0
-expected_result=0
+x=-1
+y=-2
+expected_result=2
 result=multiplication(x,y)
 test(result,expected_result,str(x) + "*" + str(y) + "=" + str(expected_result) + ", result was " + str(result))
 
