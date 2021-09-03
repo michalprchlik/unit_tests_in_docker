@@ -1,0 +1,16 @@
+FROM alpine
+RUN apk update && apk upgrade && apk add --no-cache python3 nginx py3-pip curl
+RUN pip install requests
+
+COPY default.conf /etc/nginx/conf.d/
+COPY cert/nginx.crt /etc/ssl/
+COPY cert/nginx.key /etc/ssl/
+COPY *.py .
+
+COPY index.html /usr/share/nginx/html/
+
+
+CMD ["nginx", "-g", "daemon off;"]
+
+#CMD ["rododendron.py"]
+#ENTRYPOINT ["python3"]
