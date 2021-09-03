@@ -1,0 +1,5 @@
+[BASIC]
+good-names=do_GET,do_POST,do_DELETE,do_PUT
+
+[FORMAT]
+ignore-long-lines=^from

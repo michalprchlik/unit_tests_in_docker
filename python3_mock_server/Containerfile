@@ -1,0 +1,10 @@
+FROM alpine
+RUN apk update && apk upgrade && apk add --no-cache python3 nginx py3-pip curl
+RUN pip install requests nose
+
+COPY project/ project/
+
+#CMD ["/project/services.py"]
+#ENTRYPOINT ["python3"]
+CMD ["--verbosity=2"]
+ENTRYPOINT ["nosetests"]
