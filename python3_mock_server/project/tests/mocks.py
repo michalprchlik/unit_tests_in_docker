@@ -62,7 +62,7 @@ class MockServerRequestHandler(BaseHTTPRequestHandler):
         """Placeholder"""
 
 def get_free_port():
-    """Placeholder"""
+    """Get first available port"""
     sock = socket.socket(socket.AF_INET, type=socket.SOCK_STREAM)
     sock.bind(('localhost', 0))
     port = sock.getsockname()[1]
@@ -70,7 +70,7 @@ def get_free_port():
     return port
 
 def start_mock_server(port):
-    """Placeholder"""
+    """Start mock server"""
     mock_server = HTTPServer(('localhost', port), MockServerRequestHandler)
     mock_server_thread = Thread(target=mock_server.serve_forever)
     mock_server_thread.setDaemon(True)
