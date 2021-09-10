@@ -10,7 +10,6 @@
 	}
 	
 	* {
-	  color: white;
 	  text-align: center;
 	  vertical-align: middle;
 	}
@@ -18,34 +17,48 @@
 	.wrap {
 	  display: flex;
 	  flex-flow: row wrap;
-	  flex: 1 0 auto;
+	  flex: 1 1 auto;
 	}
 	
-	#screen {
-	  width: 100%;
-	  height: 23%;
-	  font-size: 20vh;  
+	#history {
+	  width: 18%;
+	  font-size: 10wh;  
 	  background-color: white;
 	  border-radius: 5px;
 	  box-sizing: border-box;
 	  min-width: 100px;
 	  margin: 1% 1% 1% 1%;
 	  flex-grow: 1;
+	  background-color: white;
 	  color: #246fc0;
 	}
 	
-	.operator, .cls, .sendToServer, .button {
+	#screen {
+	  width: 78%;
+	  height: 23%;
+	  font-size: 20vh;  
+	  background-color: white;
+	  border-radius: 5px;
+	  box-sizing: border-box;
+	  min-width: 100px;
+	  margin: 0% 1% 0% 1%;
+	  flex-grow: 1;
+	  color: #246fc0;
+	}
+	
+	.operator, .cls, .evaluate, .button {
 	  width: 15%;
 	  height: 15%;
 	  font-size: 12vh;
 	  font-weight: bold; 
 	  background-color: #246fc0;
 	  border-radius: 5px;
-	  margin: 1% 1%;
+	  margin: 0% 1% 0% 1%;
 	  flex-grow: 5;
+	  color: white;
 	}
 	
-	.operator:hover, .cls:hover, .sendToServer:hover, .button:hover{
+	.operator:hover, .cls:hover, .evaluate:hover, .button:hover{
 	  background-color: #2062aa;
 	}
 </style>
@@ -77,14 +90,15 @@
 		
 		function evaluate() {
 			result=eval($('#screen').text())
-			$('#screen').text($('#screen').text() + '=' + result)
+			$('#screen').html($('#screen').html() + '=' + result)
+			$('#history').html($('#history').html() + '<br>' + $('#screen').text())
 			resetScreen = true
 		}
 		
 		$('.button, .operator, .cls').on('click', fade);
 		$('.button, .operator').on('click', addToScreen);
 		$('.cls').on('click', clearScreen);
-		$('.sendToServer').on('click', evaluate);
+		$('.evaluate').on('click', evaluate);
 	});
 </script>
 
@@ -92,7 +106,8 @@
 <body>
   <div class="wrap">
     <div id="screen"></div>
-
+    <div id="history"><b>History:</b><hr></div>
+    
     <div class="button" data-val="1">1</div>
     <div class="button" data-val="2">2</div>
     <div class="button" data-val="3">3</div>
@@ -109,6 +124,6 @@
     <div class="operator" data-val="*">*</div>
     <div class="operator" data-val="/">/</div>
     <div class="cls">C</div>
-    <div class="sendToServer" data-val="=">=</div>
+    <div class="evaluate" data-val="=">=</div>
   </div>
 </body>
