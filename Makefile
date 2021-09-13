@@ -12,7 +12,6 @@ python3_test:
 python3_unittest:
 	podman build -f python3_unittest/Containerfile -t python3_unittest python3_unittest/
 	podman run --rm localhost/python3_unittest		
-	
 
 python3_api_mock:
 	podman build -f python3_api_mock/Containerfile -t python3_api_mock python3_api_mock/
