@@ -39,13 +39,3 @@ Learn more at https://www.redhat.com/en/topics/containers/whats-a-linux-containe
 Red Hat OpenShift is the leading enterprise Kubernetes platform*, built for an open hybrid cloud strategy. Red Hat OpenShift’s full-stack automated operations, consistent experience—across all environments—and self-service provisioning for developers lets teams work together to more efficiently move ideas from development to production.
 
 Learn more at https://www.redhat.com/en/technologies/cloud-computing/openshift
-
-### Unit tests in bash
-
-To execute unit tests in bash for calculator in container execute below commands
-
-```
-cd bash
-podman build --no-cache -t bash_test -f containerfile .
-podman run bash_test
-```
