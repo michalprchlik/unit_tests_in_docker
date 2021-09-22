@@ -1,0 +1,6 @@
+FROM alpine
+RUN apk upgrade && apk update && apk add --no-cache python3
+COPY *.py .
+RUN python3 test.py
+CMD ["application.py"]
+ENTRYPOINT ["python3"]

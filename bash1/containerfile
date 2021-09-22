@@ -1,0 +1,6 @@
+FROM alpine
+RUN apk upgrade && apk upgrade && apk add bash
+COPY *.sh .
+RUN bash test.sh
+CMD ["application.sh"]
+ENTRYPOINT ["/bin/bash"]
