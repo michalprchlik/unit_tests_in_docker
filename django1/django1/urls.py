@@ -5,10 +5,10 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name="index.html")),
+    path('', TemplateView.as_view(template_name='index.html')),
     re_path(
-        r'^api$',
-        views.ApiView.as_view(),
-        name='api_view'
+    	r'^api/?$', 
+    	views.ApiView.as_view(), 
+    	name='api_view'
     )
 ]

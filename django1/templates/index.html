@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Calculator in javascript/JQuerry</title>
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+            }
+
+            * {
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .wrap {
+                display: flex;
+                flex-flow: row wrap;
+                flex: 1 1 auto;
+            }
+
+            #history {
+                width: 18%;
+                font-size: 10wh;
+                background-color: white;
+                border-radius: 5px;
+                box-sizing: border-box;
+                min-width: 100px;
+                margin: 1% 1% 1% 1%;
+                flex-grow: 1;
+                background-color: white;
+                color: #246fc0;
+            }
+
+            #screen {
+                width: 78%;
+                height: 23%;
+                font-size: 20vh;
+                background-color: white;
+                border-radius: 5px;
+                box-sizing: border-box;
+                min-width: 100px;
+                margin: 0% 1% 0% 1%;
+                flex-grow: 1;
+                color: #246fc0;
+            }
+
+            .operator,
+            .clear,
+            .evaluate,
+            .button {
+                width: 15%;
+                height: 15%;
+                font-size: 12vh;
+                font-weight: bold;
+                background-color: #246fc0;
+                border-radius: 5px;
+                margin: 0% 1% 0% 1%;
+                flex-grow: 5;
+                color: white;
+            }
+
+            .operator:hover,
+            .clear:hover,
+            .evaluate:hover,
+            .button:hover {
+                background-color: #2062aa;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var resetScreen;
+
+                //"click" animation on buttons
+                function fade() {
+                    $(this).fadeOut(50).fadeIn(200);
+                }
+
+                //add value to "#screen" element after button click
+                function addToScreen() {
+                    $(this);
+                    if (resetScreen == true) {
+                        clearScreen();
+                        resetScreen = false;
+                    }
+                    $("#screen").append($(this).data("val"));
+                }
+
+                //clear "#screen" element from any value
+                function clearScreen() {
+                    $("#screen").empty();
+                }
+
+                //evaluate value in "#screen" element
+                function evaluate() {
+                    $.ajax({
+                        type: "Post",
+                        url: "api",
+                        async: true,
+                        data: {
+                            data: $("#screen").text(),
+                        },
+                        success: function (result) {
+                            $("#screen").html($("#screen").html() + "=" + result);
+                            $("#history").html($("#history").html() + "<br>" + $("#screen").text());
+                            resetScreen = true;
+                        },
+                    });
+                }
+
+                $(".button, .operator, .clear, .evaluate").on("click", fade);
+                $(".button, .operator").on("click", addToScreen);
+                $(".clear").on("click", clearScreen);
+                $(".evaluate").on("click", evaluate);
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <div id="screen"></div>
+            <div id="history">
+                <b>History:</b>
+                <hr />
+            </div>
+
+            <div class="button" data-val="1">1</div>
+            <div class="button" data-val="2">2</div>
+            <div class="button" data-val="3">3</div>
+            <div class="button" data-val="4">4</div>
+            <div class="button" data-val="5">5</div>
+            <div class="button" data-val="6">6</div>
+            <div class="button" data-val="7">7</div>
+            <div class="button" data-val="8">8</div>
+            <div class="button" data-val="9">9</div>
+            <div class="button" data-val="0">0</div>
+
+            <div class="operator" data-val="+">+</div>
+            <div class="operator" data-val="-">-</div>
+            <div class="operator" data-val="*">*</div>
+            <div class="operator" data-val="/">/</div>
+            <div class="clear">Clear</div>
+
+            <div class="evaluate" data-val="=">=</div>
+        </div>
+    </body>
+</html>
