@@ -1,0 +1,68 @@
+html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      * {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .wrap {
+        display: flex;
+        flex-flow: row wrap;
+        flex: 1 1 auto;
+      }
+
+      #history {
+        width: 18%;
+        font-size: 10wh;
+        background-color: white;
+        border-radius: 5px;
+        box-sizing: border-box;
+        min-width: 100px;
+        margin: 1% 1% 1% 1%;
+        flex-grow: 1;
+        background-color: white;
+        color: #246fc0;
+      }
+
+      #screen {
+        width: 78%;
+        height: 23%;
+        font-size: 20vh;
+        background-color: white;
+        border-radius: 5px;
+        box-sizing: border-box;
+        min-width: 100px;
+        margin: 0% 1% 0% 1%;
+        flex-grow: 1;
+        color: #246fc0;
+      }
+
+      .operator,
+      .cls,
+      .evaluate,
+      .button {
+        width: 15%;
+        height: 15%;
+        font-size: 12vh;
+        font-weight: bold;
+        background-color: #246fc0;
+        border-radius: 5px;
+        margin: 0% 1% 0% 1%;
+        flex-grow: 5;
+        color: white;
+      }
+
+      .operator:hover,
+      .cls:hover,
+      .evaluate:hover,
+      .button:hover {
+        background-color: #2062aa;
+      }
